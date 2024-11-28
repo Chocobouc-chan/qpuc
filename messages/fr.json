@@ -1,0 +1,10 @@
+{
+  "home": {
+    "welcome": "Bienvenue {name}, partant pour un quiz ?"
+  },
+
+  "login": {
+    "twitch_button": "Se connecter avec Twitch",
+    "title": "Question pour un clubber"
+  }
+}
