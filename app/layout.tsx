@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { getServerSession } from "next-auth";
-import Provider from "@/components/SessionProvider";
 import { authOptions } from "@/auth.config";
 import { getMessages } from "next-intl/server";
 import IntlProvider from "@/components/IntlProvider";
@@ -28,7 +27,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(authOptions);
   const messages = await getMessages();
 
   return (
@@ -36,9 +34,9 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <IntlProvider messages={messages}>
-          <Provider session={session}>{children}</Provider>
-        </IntlProvider>
+        <div className="w-screen animated-background h-screen bg-gradient-to-br from-blue-500 via-blue-500 to-violet-700">
+          <IntlProvider messages={messages}>{children}</IntlProvider>
+        </div>
       </body>
     </html>
   );
