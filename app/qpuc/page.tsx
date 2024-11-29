@@ -1,11 +1,13 @@
 import { authOptions } from "@/auth.config";
 import { getTwitchClips } from "@/lib/twitchData";
 import Home from "@/ui/Home";
+import { Session } from "next-auth";
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
 
 export default async function Page() {
-  const session = await getServerSession(authOptions);
+  const session: (Session & { access_token: string }) | null =
+    await getServerSession(authOptions);
   let clips = [];
 
   //TODO remove and add proper error handling
