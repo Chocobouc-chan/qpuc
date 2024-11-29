@@ -1,20 +1,13 @@
 "use client";
 
 import { signIn, useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
 import { BsTwitch } from "react-icons/bs";
 import { useTranslations } from "next-intl";
-import Provider from "@/components/SessionProvider";
 
 const Login = () => {
-  const { data: session } = useSession();
-
-  if (session) {
-    redirect("/qpuc");
-  }
   const t = useTranslations("login");
   return (
-    <Provider session={session}>
+    <div className="w-screen h-screen animated-background bg-gradient-to-br from-blue-500 via-blue-500 to-violet-700">
       <div className="w-screen flex justify-center">
         <span className="text-5xl mt-20">{t("title")}</span>
       </div>
@@ -27,7 +20,7 @@ const Login = () => {
           <span>{t("twitch_button")}</span>
         </button>
       </div>
-    </Provider>
+    </div>
   );
 };
 
