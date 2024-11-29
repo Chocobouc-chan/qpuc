@@ -15,7 +15,7 @@ export default async function Page() {
     clips = await getTwitchClips(session);
 
     return (
-      <div className="w-full h-full animated-background bg-gradient-to-br from-blue-500 via-blue-500 to-violet-700 overflow-y-hidden ">
+      <div className="w-full h-full bg-gradient-to-r from-blue-500 to-fuchsia-700 overflow-y-hidden ">
         <div className="flex flex-col items-center justify-center mt-4">
           <Home session={session} clips={clips} />
         </div>

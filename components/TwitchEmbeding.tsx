@@ -30,7 +30,7 @@ export default function TwitchEmbeding({ clips }: { clips: TwitchClips }) {
             allowFullScreen={true}
           />
           <button
-            className="rounded-3xl mt-2 flex flex-row items-center bg-violet-600 p-5 text-gray-50 hover:bg-violet-700 active:bg-violet-800 us:outline-none focus:ring focus:ring-violet-300"
+            className="rounded-3xl mt-2 flex flex-row items-center border-2 border-stone-100 p-5 text-gray-50 hover:bg-violet-700 active:bg-violet-800 us:outline-none"
             onClick={() => setCurrentClip(undefined)}
           >
             {t("closeClip")}
@@ -47,7 +47,7 @@ export default function TwitchEmbeding({ clips }: { clips: TwitchClips }) {
         {clips.data.map((clip) => {
           return (
             <div
-              className="flex flex-col justify-center w-1/6 m-2 hover:cursor-pointer p-2 border-4 rounded-md border-violet-900 hover:border-violet-700 bg-black"
+              className="flex flex-col justify-center w-1/6 m-2 hover:cursor-pointer p-2 border-4 rounded-md border-violet-900 hover:border-violet-400 active:border-violet-200 bg-black"
               key={clip.id}
               onClick={() => setCurrentClip(clip)}
             >
