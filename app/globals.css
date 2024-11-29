@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,6 +33,9 @@ body {
   }
   50% {
     background-position: 100% 50%;
+  }
+  75% {
+    background-position: 100% 75%;
   }
   100% {
     background-position: 0% 50%;

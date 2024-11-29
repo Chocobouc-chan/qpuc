@@ -1,10 +1,13 @@
 {
   "home": {
-    "welcome": "Bienvenue {name}, partant pour un quiz ?"
+    "welcome": "Bienvenue {name}, il n'y a pas de quiz en cours, jette un oeil à ce qu'on fait sur twitch: "
   },
 
   "login": {
     "twitch_button": "Se connecter avec Twitch",
     "title": "Question pour un clubber"
+  },
+  "twitchEmbeding": {
+    "closeClip": "Fermer le clip"
   }
 }

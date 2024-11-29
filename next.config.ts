@@ -8,7 +8,10 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "static-cdn.jtvnw.net",
-        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "clips-media-assets2.twitch.tv",
       },
     ],
   },

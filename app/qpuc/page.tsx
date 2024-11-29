@@ -1,36 +1,27 @@
-"use client";
-import { signOut, useSession } from "next-auth/react";
-import { useTranslations } from "next-intl";
-import Image from "next/image";
-export default function Home() {
-  const t = useTranslations("home");
-  const { data: session } = useSession();
-  return (
-    <div className="w-screen h-screen ">
-      <div className="flex flex-col items-center justify-center">
-        <Image
-          src={session.user!.image!}
-          width={150}
-          height={150}
-          className="hidden md:block rounded-full"
-          alt="Twitch profile image"
-        />
-        <p>{t("welcome", session?.user)}</p>
-        <p className="w-1/2">{JSON.stringify(session)}</p>
-        <button onClick={() => signOut({ callbackUrl: "/", redirect: true })}>
-          signout
-        </button>
-      </div>
-    </div>
-  );
-}
+import { authOptions } from "@/auth.config";
+import { getTwitchClips } from "@/lib/twitchData";
+import Home from "@/ui/Home";
+import { Session } from "next-auth";
+import { getServerSession } from "next-auth/next";
+import { redirect } from "next/navigation";
 
-/* export interface SessionTwitch {
-  user: {
-    name: string;
-    email: string;
-    image: string;
-  };
-  access_token: string;
-  providerAccountId: string;
-} */
+export default async function Page() {
+  const session: (Session & { access_token: string }) | null =
+    await getServerSession(authOptions);
+  let clips = [];
+
+  //TODO remove and add proper error handling
+  if (session) {
+    clips = await getTwitchClips(session);
+
+    return (
+      <div className="w-full h-full animated-background bg-gradient-to-br from-blue-500 via-blue-500 to-violet-700 overflow-y-hidden ">
+        <div className="flex flex-col items-center justify-center mt-4">
+          <Home session={session} clips={clips} />
+        </div>
+      </div>
+    );
+  } else {
+    redirect("/");
+  }
+}
