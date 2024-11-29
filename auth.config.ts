@@ -2,6 +2,7 @@ import { AuthOptions, NextAuthOptions } from "next-auth";
 import TwitchProvider from "next-auth/providers/twitch";
 
 export const authOptions: AuthOptions = {
+  pages: { signIn: "/" },
   providers: [
     TwitchProvider({
       clientId: process.env.TWITCH_ID as string,
