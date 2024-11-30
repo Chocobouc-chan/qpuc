@@ -8,7 +8,7 @@ export async function getTwitchClips(
     {
       headers: {
         "Client-Id": `${process.env.TWITCH_ID}`,
-        Authorization: "Bearer " + session.access_token,
+        Authorization: "Bearer " + process.env.TWITCH_TOKEN,
       },
     }
   );
