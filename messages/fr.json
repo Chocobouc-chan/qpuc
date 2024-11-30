@@ -1,6 +1,6 @@
 {
   "home": {
-    "welcome": "Bienvenue {name}, il n'y a pas de quiz en cours, jette un oeil à ce qu'on fait sur twitch: "
+    "welcome": "Bienvenue {name}, il n'y a pas de quiz en cours et nous ne sommes pas en stream, jette un oeil à ce qu'on fait sur twitch: "
   },
 
   "login": {
