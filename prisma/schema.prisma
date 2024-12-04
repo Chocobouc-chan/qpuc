@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model Quiz {
+  id String @default(cuid()) @id
+  name String
+  question Question[]
+  userPoint UserPoint[]
+  userAnswer UserAnswer[]
+  @@unique([name])
+}
+
+model User {
+  id String @default(cuid()) @id
+  twitch_id String
+  username String
+  isAdmin Boolean @default(false)
+  userPoint UserPoint[]
+  userAnswer UserAnswer[]
+  @@unique([twitch_id])
+}
+
+model UserPoint {
+  user User @relation(fields:[userId], references:[id])
+  userId String
+  quiz Quiz @relation(fields:[quizId], references: [id])
+  quizId String
+  points Int
+
+  @@id([userId, quizId])
+  @@unique([userId, quizId])
+}
+
+model Question {
+  id String @default(cuid()) @id
+  question String
+  question_type String
+  points Int
+  author String
+  media1 String
+  media2 String
+  media3 String
+  answer Answer[]
+  quiz Quiz @relation(fields:[quizId], references: [id], onDelete: Cascade)
+  quizId String
+  used Boolean 
+  userAnswer UserAnswer[]
+}
+
+model Answer {
+  id String @id @default(cuid())
+  question Question @relation(fields:[questionId], references: [id], onDelete: Cascade)
+  questionId String
+  answer String
+  isRight Boolean
+  media String
+  userAnswer UserAnswer[]
+}
+
+model UserAnswer {
+  user User @relation(fields:[userId], references: [id])
+  userId String
+  question Question @relation(fields:[questionId], references: [id])
+  questionId String
+  quiz Quiz @relation(fields:[quizId], references: [id])
+  quizId String
+  answer Answer @relation(fields:[answerId], references: [id])
+  answerId String
+  @@unique([userId, questionId, quizId])
+}

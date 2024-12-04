@@ -9,5 +9,18 @@
   },
   "twitchEmbeding": {
     "closeClip": "Fermer le clip"
+  },
+  "admin": {
+    "dashboard": {
+      "create_new_quiz": "Créer un nouveau quiz"
+    },
+    "quiz": {
+      "create": {
+        "title": "Créer un nouveau quiz",
+        "label": "Nom du quiz: ",
+        "button": "Ajouter un nouveau quiz",
+        "placeholder": "Entrez le nom du nouveau Quiz"
+      }
+    }
   }
 }
