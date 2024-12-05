@@ -11,9 +11,9 @@ datasource db {
 model Quiz {
   id String @default(cuid()) @id
   name String
-  question Question[]
-  userPoint UserPoint[]
-  userAnswer UserAnswer[]
+  questions Question[]
+  userPoints UserPoint[]
+  userAnswers UserAnswer[]
   @@unique([name])
 }
 

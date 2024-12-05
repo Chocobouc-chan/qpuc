@@ -30,7 +30,7 @@ export default function TwitchEmbeding({ clips }: { clips: TwitchClips }) {
             allowFullScreen={true}
           />
           <button
-            className="rounded-3xl mt-2 flex flex-row items-center border-2 border-stone-100 p-5 text-gray-50 hover:bg-violet-700 active:bg-violet-800 us:outline-none"
+            className="btn-primary"
             onClick={() => setCurrentClip(undefined)}
           >
             {t("closeClip")}
@@ -56,7 +56,7 @@ export default function TwitchEmbeding({ clips }: { clips: TwitchClips }) {
                 width={240}
                 height={136}
                 className="hidden md:block self-center"
-                alt={`Clip from BashClub channel ${clip.id}`}
+                alt={`${t("alt")} ${clip.id}`}
               />
               <span className="text-center truncate">{clip.title}</span>
             </div>

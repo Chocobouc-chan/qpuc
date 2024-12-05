@@ -8,7 +8,7 @@ export default function TwitchAuthButton() {
   return (
     <>
       <button
-        className="rounded-3xl flex flex-row items-center bg-violet-600 p-5 text-gray-50 hover:bg-violet-700 active:bg-violet-800 us:outline-none focus:ring focus:ring-violet-300"
+        className="btn-primary flex flex-row items-center"
         onClick={() => signIn("twitch", { callbackUrl: "/qpuc" })}
       >
         <BsTwitch className="h-12 w-12 mr-2" />

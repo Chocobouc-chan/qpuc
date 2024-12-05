@@ -3,6 +3,12 @@ import { appSession } from "@/definition/types";
 import prisma from "./prisma";
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
+import { Prisma } from "@prisma/client";
+import { getTranslations } from "next-intl/server";
+import { redirect } from "next/navigation";
+
+const t = await getTranslations("error");
+
 // User
 export async function createOrUpdateUser(session: appSession) {
   await prisma.user.upsert({
@@ -27,26 +33,50 @@ export async function createQuiz(prevState: any, formData: FormData) {
   const data = schema.parse({
     name: formData.get("name"),
   });
+  let res;
   try {
-    await prisma.quiz.create({
+    res = await prisma.quiz.create({
       data,
     });
-    revalidatePath("/");
-    return { message: "Created new quiz" };
   } catch (e) {
-    return { message: "Failed to create new quiz" };
+    if (e instanceof Prisma.PrismaClientKnownRequestError) {
+      return { message: t(e.code) };
+    }
+    return { message: "Désolé, je n'ai pas réussi à créer ce quiz" };
   }
+  revalidatePath("/");
+  redirect(`/qpuc/admin/quiz/${res.id}`);
 }
 
-export async function updateQuiz(name: string, id: string) {
-  await prisma.quiz.update({
-    where: {
-      id,
-    },
-    data: {
-      name,
-    },
+export async function updateQuiz(
+  ids: { quizId: string },
+  prevState: any,
+  formData: FormData
+) {
+  const schema = z.object({
+    name: z.string().min(1),
   });
+  const data = schema.parse({
+    name: formData.get("name"),
+  });
+  try {
+    await prisma.quiz.update({
+      where: {
+        id: ids.quizId,
+      },
+      data,
+    });
+  } catch (e) {
+    if (e instanceof Prisma.PrismaClientKnownRequestError) {
+      return { message: t(e.code), error: "NOT_UNIQUE" };
+    }
+    return {
+      message: "Désolé, je n'ai pas réussi à créer ce quiz",
+      error: "UKN_ERROR",
+    };
+  }
+  revalidatePath(`/qpuc/admin/quiz/${ids.quizId}`);
+  return { message: "" };
 }
 
 export async function deleteQuiz(id: string) {

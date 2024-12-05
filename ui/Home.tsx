@@ -26,8 +26,11 @@ export default function Home({
       />
       <p>{t("welcome", session?.user)}</p>
       <TwitchEmbeding clips={clips} />
-      <button onClick={() => signOut({ callbackUrl: "/", redirect: true })}>
-        signout
+      <button
+        className="btn-primary"
+        onClick={() => signOut({ callbackUrl: "/", redirect: true })}
+      >
+        {t("signout")}
       </button>
     </>
   );

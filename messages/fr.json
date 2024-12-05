@@ -1,6 +1,7 @@
 {
   "home": {
-    "welcome": "Bienvenue {name}, il n'y a pas de quiz en cours et nous ne sommes pas en stream, jette un oeil à ce qu'on fait sur twitch: "
+    "welcome": "Bienvenue {name}, il n'y a pas de quiz en cours et nous ne sommes pas en stream, jette un oeil à ce qu'on fait sur twitch: ",
+    "signout": "Se déconnecter"
   },
 
   "login": {
@@ -8,7 +9,8 @@
     "title": "Question pour un clubber"
   },
   "twitchEmbeding": {
-    "closeClip": "Fermer le clip"
+    "closeClip": "Fermer le clip",
+    "alt": "Clip from BashClub channel"
   },
   "admin": {
     "dashboard": {
@@ -17,10 +19,13 @@
     "quiz": {
       "create": {
         "title": "Créer un nouveau quiz",
-        "label": "Nom du quiz: ",
-        "button": "Ajouter un nouveau quiz",
-        "placeholder": "Entrez le nom du nouveau Quiz"
+        "label": "Nom du quiz* : ",
+        "button": "Créer un nouveau quiz",
+        "placeholder": "Nom du jeu de préférence"
       }
     }
+  },
+  "error": {
+    "P2002": "Une entrée de la base de donnée existe déjà avec le/les paramètre uniques"
   }
 }
