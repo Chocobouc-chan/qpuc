@@ -22,6 +22,22 @@
         "label": "Nom du quiz* : ",
         "button": "Créer un nouveau quiz",
         "placeholder": "Nom du jeu de préférence"
+      },
+      "details": {
+        "add_button": "Ajouter une question"
+      },
+      "table": {
+        "question": "Question",
+        "question_type": "Type",
+        "points": "Points",
+        "author": "Auteur"
+      }
+    },
+    "question": {
+      "modal": {
+        "yes_button": "Oui",
+        "no_button": "Non",
+        "are_you_sure_about_that": "Souhaitez vous vraiment supprimer la question :"
       }
     }
   },

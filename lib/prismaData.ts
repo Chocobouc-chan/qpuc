@@ -26,7 +26,12 @@ export async function createOrUpdateUser(session: appSession) {
 }
 
 // Quiz
-export async function createQuiz(prevState: any, formData: FormData) {
+export async function createQuiz(
+  prevState: {
+    message: string;
+  },
+  formData: FormData
+) {
   const schema = z.object({
     name: z.string().min(1),
   });
@@ -50,7 +55,10 @@ export async function createQuiz(prevState: any, formData: FormData) {
 
 export async function updateQuiz(
   ids: { quizId: string },
-  prevState: any,
+  prevState: {
+    message: string;
+    error: string;
+  },
   formData: FormData
 ) {
   const schema = z.object({
@@ -76,7 +84,7 @@ export async function updateQuiz(
     };
   }
   revalidatePath(`/qpuc/admin/quiz/${ids.quizId}`);
-  return { message: "" };
+  return { message: "", error: "" };
 }
 
 export async function deleteQuiz(id: string) {
@@ -87,4 +95,23 @@ export async function deleteQuiz(id: string) {
   });
 }
 
+export async function deleteQuestion(id: string, quizId: string) {
+  try {
+    await prisma.question.delete({
+      where: {
+        id,
+      },
+    });
+  } catch (e) {
+    if (e instanceof Prisma.PrismaClientKnownRequestError) {
+      return { message: t(e.code), error: "NOT_UNIQUE" };
+    }
+    return {
+      message: "Désolé, je n'ai pas réussi à créer ce quiz",
+      error: "UKN_ERROR",
+    };
+  }
+  revalidatePath(`/qpuc/admin/quiz/${quizId}`);
+  return { message: "" };
+}
 export async function upsertQuestion() {}

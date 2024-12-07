@@ -46,6 +46,10 @@ body {
   .btn-primary {
     @apply rounded-3xl bg-teal-600 p-5 text-gray-50 hover:bg-teal-700 active:bg-teal-800 focus:ring focus:ring-violet-300;
   }
+
+  .btn-secondary {
+    @apply rounded-3xl bg-red-500 p-5 text-gray-50 hover:bg-red-700 active:bg-red-800 focus:ring focus:ring-violet-300;
+  }
   .input-primary {
     @apply bg-transparent placeholder:text-slate-400 text-white text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow;
   }

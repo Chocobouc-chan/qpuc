@@ -31,11 +31,11 @@ export default function QuizTitle({ quizName }: { quizName: string }) {
     return (
       <div>
         <button
-          className="flex flex-row items-center gap-7"
+          className="flex flex-row items-center gap-3"
           onClick={() => setIsEditing(true)}
         >
           <span className="text-5xl">Quiz : {quizName}</span>
-          <LuPencil size={30} />
+          <LuPencil size={30} color="#eab308" />
         </button>
       </div>
     );
@@ -54,7 +54,7 @@ export default function QuizTitle({ quizName }: { quizName: string }) {
             autoFocus
           ></input>
           <button className="p-2" type="submit" aria-disabled={pending}>
-            <FaCheck />
+            <FaCheck color="#16a34a" />
           </button>
         </form>
         <p aria-live="polite">{state?.message}</p>
